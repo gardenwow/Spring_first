@@ -24,7 +24,7 @@ public class CalcService implements CalcServiceInterf {
     @Override
     public int divineDvyh(int num1, int num2) {
         if (num2 == 0) {
-            throw new IllegalArgumentException();
+            throw new DivisionByZeroException();
         } else {
             return num1 / num2;
         }

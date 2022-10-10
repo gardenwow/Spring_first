@@ -7,10 +7,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 @SpringBootTest
 public class SkyProSpringV1SnApplicationTests {
+	private final CalcService calcService = new CalcService();
 	private int num1;
 	private int num2;
+	private int num3;
 
 	@BeforeEach
 	public void setUp(){
@@ -18,14 +22,10 @@ public class SkyProSpringV1SnApplicationTests {
 		Random rand = new Random();
 		num1 = nums.get(rand.nextInt(nums.size()));
 		num2 = nums.get(rand.nextInt(nums.size()));
-		//num2 = 0;
+		num3 = 0;
 	}
 	@Test
 	public void divineTwoTest() {
-		CalcService calcService = new CalcService();
-		if (num2 == 0){
-			throw new IllegalArgumentException();
-		}
 		double stable = calcService.divineDvyh(num1,num2);
 		double divineNums = num1/num2;
 		Assertions.assertEquals(divineNums, stable);
@@ -33,24 +33,25 @@ public class SkyProSpringV1SnApplicationTests {
 
 	@Test
 	public void plusTwoTest() {
-		CalcService calcService = new CalcService();
 		double stable = calcService.summaDvyh(num1,num2);
 		double plusNums = num1+num2;
 		Assertions.assertEquals(plusNums, stable);
 	}
 	@Test
 	public void minusTwoTest() {
-		CalcService calcService = new CalcService();
 		double stable = calcService.sminusDvyh(num1,num2);
 		double minusNums = num1-num2;
 		Assertions.assertEquals(minusNums, stable);
 	}
 	@Test
 	public void multiplyTwoTest() {
-		CalcService calcService = new CalcService();
 		double stable = calcService.multiplyDvyh(num1,num2);
 		double multyNums = num1*num2;
 		Assertions.assertEquals(multyNums, stable);
+	}
+	@Test
+	public void zeroTwoTest() {
+		assertThrows(DivisionByZeroException.class,() -> calcService.divineDvyh(num1, num3));
 	}
 
 
