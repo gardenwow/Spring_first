@@ -22,8 +22,12 @@ public class CalcService implements CalcServiceInterf {
         return num1 * num2;
     }
     @Override
-    public int divineDvyh(int num1, int num2){
+    public int divineDvyh(int num1, int num2) {
+        if (num2 == 0) {
+            throw new IllegalArgumentException();
+        } else {
             return num1 / num2;
         }
+    }
 }
 

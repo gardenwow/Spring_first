@@ -21,7 +21,7 @@ public class CalcController {
     }
 
     @GetMapping(path = "/plus")
-    public String summaDvyh(@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
+    public String summaDvyh(@RequestParam(name = "num1") int num1, @RequestParam("num2") int num2) {
         return "your summa = " + calcService.summaDvyh(num1, num2);
 
     }
@@ -32,14 +32,14 @@ public class CalcController {
     }
 
     @GetMapping(path = "/multiply")
-    public String multiplyDvyh(@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
+    public String multiplyDvyh(@RequestParam(value = "num1") int num1, @RequestParam("num2") int num2) {
         return "your ymnojenie = " + calcService.multiplyDvyh(num1, num2);
     }
 
     @GetMapping(path = "/divine")
     public String divineDvyh(@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
-        if (num2 != 0) {
+        //if (num2 != 0) {
             return "your delenie = " + calcService.divineDvyh(num1, num2);
-        } else {return "na 0 delit nelzya";}
+        //} else {return "na 0 delit nelzya";}
     }
 }
